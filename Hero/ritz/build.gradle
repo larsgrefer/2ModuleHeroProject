@@ -1,39 +1,13 @@
-apply plugin: 'com.android.library'
-apply plugin: "io.freefair.android.aspectj.transform"
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '5.6.1'
+plugins {
+    id "java"
+    id "io.freefair.aspectj.post-compile-weaving"
 }
 
-
-android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
-
-    defaultConfig {
-        minSdkVersion 26
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        multiDexEnabled true
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-}
+sourceCompatibility = 1.8
 
 dependencies {
     implementation 'org.aspectj:aspectjrt:1.9.4'
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    compileOnly 'com.google.android:android:4.1.1.4'
 }
